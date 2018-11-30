@@ -26,4 +26,33 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+
+    /**
+     * Return the user's posts
+     */
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class, 'author_id');
+    }
+
+
+    /**
+     * Return the user's comments
+     */
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class, 'author_id');
+    }
+
+    /**
+     * Return the user's likes
+     */
+    public function likes(): HasMany
+    {
+        return $this->hasMany(Like::class, 'author_id');
+    }
+
+
 }
